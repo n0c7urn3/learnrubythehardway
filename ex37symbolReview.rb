@@ -1,3 +1,9 @@
+#tells ruby to look in the current directory for any files called
+$LOAD_PATH << '.'
+
+# require  Specifies the library from which a module will be called later
+require 'testmodule'
+
 #BEGIN 	Run this block when the script starts. 	BEGIN { puts "hi" }
 BEGIN {
   puts "This is a BEGIN statement, and is run at the start of the script"
@@ -17,11 +23,18 @@ puts "This is a concatenation of this" and "that"
 
 #begin 	Start a block, usually for exceptions. 	begin end
 begin
-  puts "attempting to begin opening a nonexistent file"
+  retries ||= 0
+  puts "attempt #{retries} to begin opening a nonexistent file"
   open("filethatdoesntexist").read
   puts "This will display if it does exist!"
+# rescue  Will run if the block encounters an error
 rescue
   puts "that file doesn't exist.  I rescued you!"
+  # retry  Retries to run the block after an exception, typically you'll try to recover from it in a way that will allow successful excecution
+  retry if (retries += 1) < 3
+# ensure  Will run no matter what
+ensure
+  puts "and I'm going to do this whether you like it or not!"
 end
 
 #break 	Break out of a loop right now. 	while true; break; end
@@ -61,13 +74,14 @@ sample.whatisit
 
 #def 	Define a new function. 	def X(); end
 def newfunction
-  puts "This is a super useful function that tells you that it's a function!"
+  # return  Returns a value or values from a function, optional in most cases
+  return "This is a super useful function that tells you that it's a function!"
 end
 
-newfunction
+functionresult = newfunction
+puts functionresult
 
 #defined? 	Is this class/function/etc. defined already? 	defined? Class == "constant"
-
 if defined?(definition).nil?
   puts "Definition is not defined, defining now."
   definition = "the act of defining, or of making something definite, distinct, or clear (dictionary.com)"
@@ -80,4 +94,49 @@ if defined?(definition).nil?
   definition = "the act of defining, or of making something definite, distinct, or clear (dictionary.com)"
 else
   puts "The definition of definition is:  #{definition}"
+end
+
+#do  For a given parameter, do the thing
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].each do |number|
+  puts "Do put number #{number}"
+end
+
+# if, elsif, else  If this, do this, if not this, but that, do that, if neither, do the other thing
+number = 2
+if number == 1
+  puts "The number is 1"
+elsif number == 2
+  puts "The number is 2"
+else
+  puts "The number is neither 1 nor 2"
+end
+
+#for  For a given parameter, execute the following code
+for number in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  if number <= 5
+    # next  Perform the next iteration immediately, do not perform any other operations in the current iteration
+    next
+  end
+  puts "For this is the #{number}th in the array"
+  # redo  Will rerun the code block under specified circumstances, if you uncomment the following line it will run infinitely since it has no exit condition
+  # redo if number = 8
+end
+
+#calling a module from another file
+Testmodule.teststuff
+
+# not  Logical NOT, but != is recommended for use
+number = 2
+if not number == 1
+  puts "The number is not 1"
+else
+  puts "The number is 1"
+end
+
+# or  Logical OR
+number = 3
+if number == 1 or number == 2
+  puts "The number is 1 OR 2, but I won't tell you which!"
+else
+  puts "The number is neither 1 nor 2"
 end
