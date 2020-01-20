@@ -48,6 +48,7 @@ counter = 0
 while counter != 3
 
   case counter
+  # when  This is simply a parameter to be used with the case keyword
   when 0
     puts "The counter is at 0"
   when 1
@@ -69,8 +70,18 @@ class Sample
   end
 end
 
+class AnotherSample < Sample
+  def whatisit
+    # super  Calls the parent class
+    super
+  end
+end
+
 sample = Sample.new
 sample.whatisit
+
+anothersample = AnotherSample.new
+anothersample.whatisit
 
 #def 	Define a new function. 	def X(); end
 def newfunction
@@ -83,6 +94,8 @@ puts functionresult
 
 #defined? 	Is this class/function/etc. defined already? 	defined? Class == "constant"
 if defined?(definition).nil?
+  # then  Then is not needed, but can be used optionally.
+then
   puts "Definition is not defined, defining now."
   definition = "the act of defining, or of making something definite, distinct, or clear (dictionary.com)"
 else
@@ -139,4 +152,40 @@ if number == 1 or number == 2
   puts "The number is 1 OR 2, but I won't tell you which!"
 else
   puts "The number is neither 1 nor 2"
+end
+
+# undef  This will remove a defined function from the script.  Uncommenting the following line will remove the function 'newfunction'
+#undef newfunction
+newfunction
+
+# unless  This is the inverse function to if
+x = 1
+unless x >= 2
+  puts "x is less than 2"
+else
+  puts "x is greater than 2"
+end
+
+# until  This is a loop that will run until it evaluates true
+until x > 2
+  puts "x = #{x}"
+  puts "x is less than or equal to 2"
+  x += 1
+end
+
+def crosswalk
+  # yield  Using yield will allow a function to call a block rather than a method
+  yield "for pedestrians"
+end
+
+crosswalk { | forwhat | puts "yield #{forwhat}" }
+
+if true
+  puts "True boolean value"
+else
+end
+
+unless true
+  puts "False boolean value"
+else
 end
