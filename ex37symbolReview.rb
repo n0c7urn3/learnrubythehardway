@@ -180,12 +180,58 @@ end
 
 crosswalk { | forwhat | puts "yield #{forwhat}" }
 
-if true
-  puts "True boolean value"
-else
+def booltest(bool)
+  if bool==true
+    puts "This value is a true boolean"
+  elsif bool==false
+    puts "This value is a false boolean"
+  elsif bool==nil
+    puts "This value is nil (null)"
+  else
+  end
 end
 
-unless true
-  puts "False boolean value"
-else
-end
+bool = true
+booltest(bool)
+bool = false
+booltest(bool)
+bool = nil
+booltest(bool)
+
+string = "this is a string"
+puts string
+integer = 123456789
+puts "The following is an integer: #{integer}"
+float = 3.14
+puts "#{float} is a floating value (decimal value)"
+array = ["This", "is", "an", "array", "(list)"]
+puts "#{array[0]} #{array[1]} #{array[2]} #{array[3]} #{array[4]}"
+hash = {"hash1" => "hash", "hash2" => "value"}
+puts "This is a #{hash["hash1"]} and this is its #{hash["hash2"]}"
+puts "This is an escaped backslash: \\"
+puts 'This is an escaped single quote: \''
+puts "This is an escaped double quote: \""
+puts "Not sure what this does, but it says it's a bell, so I guess use it if you
+need to get the user's attention?:  \a"
+puts "This is a delete\b\b\b\b\b\bbackspace"
+puts "This is said to be a formfeed but I'm not sure what that means?\f
+Looking it up, it looks like it's used if you're outputting to a printer, so
+a bit antiquated for most modern use."
+puts "This one is easy\n
+It just escapes to a new line!"
+puts "I'm guessing this one (carriage) is like the formfeed?\rWow, guess it just prints to the beginning of the current line, not sure where
+that's useful"
+puts "\tPutting a tab in here is going to trigger someone"
+puts "\nTRIGGERED WITH A VERTICAL TAB, TOO!"
+
+puts 1 + 1
+puts 2 - 1
+puts 2 * 2
+# Exponent
+puts 3 ** 3
+puts 9 / 3
+# Returns the remainder, modulus
+puts 5 % 2
+
+puts 1 > 3
+puts 1 <3
