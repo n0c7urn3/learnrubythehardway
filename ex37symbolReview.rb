@@ -135,7 +135,7 @@ for number in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   # redo if number = 8
 end
 
-#calling a module from another file
+#calling a module from another file, the dot access is how to call a particular method in the module (module.method)
 Testmodule.teststuff
 
 # not  Logical NOT, but != is recommended for use
@@ -224,14 +224,25 @@ that's useful"
 puts "\tPutting a tab in here is going to trigger someone"
 puts "\nTRIGGERED WITH A VERTICAL TAB, TOO!"
 
-puts 1 + 1
-puts 2 - 1
-puts 2 * 2
+puts "1 + 1 = #{1 + 1}"
+puts "2 - 1 = #{2 - 1}"
+puts "2 * 2 = #{2 * 2}"
 # Exponent
-puts 3 ** 3
-puts 9 / 3
+puts "3 ^ 3 = #{3 ** 3}"
+puts "9 / 3 = #{9 / 3}"
 # Returns the remainder, modulus
-puts 5 % 2
+puts "The remainder of 5 / 2 = #{5 % 2}"
 
-puts 1 > 3
-puts 1 <3
+puts "1 > 3 is #{1 > 3}"
+puts "1 <3 is #{1 <3} (missing space intended <3 <3 <3)"
+
+CONSTANTSTRING = "This is not a constant called using \"colon access\""
+module Constantmodule
+  CONSTANTSTRING = "This is a constant called using \"colon access\""
+end
+puts CONSTANTSTRING
+puts Constantmodule::CONSTANTSTRING
+
+puts "This is #{!true} (BOOLEAN NOT)"
+puts "3 >= 3 = #{3 >= 3}"
+puts "2 <= 2 = #{3 <= 3}"
